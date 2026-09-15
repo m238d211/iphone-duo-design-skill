@@ -118,15 +118,50 @@ The kit shows 10 worked examples of real app types adapting between outer (close
 9. Calendar — outer: agenda list; inner: agenda pane + event detail pane (with hinge gutter)
 10. Dark Mode Check — a dark-mode rendering of a messaging app, used to sanity-check the pattern in dark mode
 
+## Do / Don't rules
+
+The kit's "Do / Don't" page gives ten paired illustrations of common mistakes. Use these as a checklist when reviewing any iPhone Duo layout:
+
+1. **Preserve task continuity** — don't restart or reset a flow when the device folds/unfolds.
+2. **Use the extra area for secondary context** — don't just stretch a single-pane layout; give the inner display's extra space a real second pane.
+3. **Respect the hinge and reserved regions** — don't place primary actions or important content on the fold line.
+4. **Keep bars where the system puts them** — don't move status/navigation bars to positions the system doesn't use for this device.
+5. **Keep control order stable across poses** — don't reorder controls just because the pose changed.
+6. **Split grids evenly at the fold** — uneven column splits across the hinge look broken.
+7. **Let scrolling content stay in place** — don't let items visually jump/displace across the fold as the user scrolls.
+8. **Handle each safe-area inset on its own** — don't mirror one edge's inset onto the opposite edge.
+9. **Keep a readable line length** — don't let text stretch edge-to-edge on the wider inner display; use a side pane or cap line length instead.
+10. **Use the system overflow menu** — don't invent a custom overflow/more-actions pattern.
+
+## Starter templates
+
+The kit ships 7 ready-to-duplicate frame sets (each with Outer and Inner states, plus optional hidden "Guides" layers for Safe Area / Hinge you can toggle on to check your work):
+
+**Blank**, **Master Detail**, **Sidebar Detail**, **Feed**, **Media + Context**, **Map + Panel**, **Dashboard**.
+
+Each starter's Inner layout already reflects the leading/trailing pane split described above — start from the closest-matching template rather than building a layout from scratch.
+
 ## Component library
 
-The kit includes a "Device Frames" page with 15 reusable device-frame components (combinations of Display=Outer/Inner × Orientation=Portrait/Landscape × Fold=Folded/Unfolded/Partial × Presentation=Device/Screen Only/Guides), plus properties (Display, Orientation, Fold, Presentation, Content, Show System Chrome) and a validity table of which combinations are real states.
+Two component-bearing pages exist in the source file:
+
+- **Device Frames** — 15 device-frame symbols spanning Display (Outer/Inner) × Orientation (Portrait/Landscape) × Fold (Folded/Unfolded/Partial) × Presentation (Device / Screen Only / Guides), plus a validity table of which combinations are real device states.
+- **Components** — the full UI kit: status bar variants (side rail / top bar, outer / inner), a "Liquid Glass" material in 4 types, sidebar rows/columns, pane roles (Content/Detail/Supporting), split-view and arrangement-view variants (Split/Overlay × Flat/Partial fold), vertical and horizontal bars (nav bar, toolbar, tab bar), floating controls, sheets, context menus, list rows, avatars, capsule buttons, metrics, bar buttons, an SF-Symbols-style glyph set (chevron, xmark, plus, magnifyingglass, house, gearshape, etc.), and the documentation-system components used throughout the kit itself (spec badges, callouts, do/don't rule blocks, checklist items).
+
+If you're generating UI code (not just Figma frames) for iPhone Duo, treat this component list as the vocabulary to reuse: e.g. "outer display" screens use the vertical-bar status/nav pattern; "inner display" screens use pane roles (Content/Detail/Supporting) and the split/overlay arrangement views.
+
+## Known gaps — verify before treating as final
+
+This skill was compiled by an AI agent reading the source Figma file through a live connector, and one page could not be fully read due to a tool-call rate limit reached mid-session:
+
+- **About page**: contains the kit's actual legal/licensing notice, an "Assumptions to verify" list (4 items), and an explicit "Apple Resources and Publishing Review" section (labeled "Referenced, not copied" / "Not included" / "Personal interpretation") — this is exactly the section that governs how this kit relates to real Apple IP. **Read this page yourself in Figma before publishing or redistributing anything derived from this kit**, and update `reference/page-node-map.md` / this file's license section accordingly. Node ID: `3:637`.
+- Navigation and Adaptive Patterns pages' exact "what changes / why / build with" text was structurally identified (which patterns exist, what states they show) but not transcribed verbatim — see `reference/page-node-map.md` for how to pull the exact wording if needed.
 
 ## Going further / re-fetching live data
 
-This skill was compiled from a live Figma file via the Figma MCP connector. If you need exact pixel-level detail beyond what's summarized here (e.g. verbatim copy from the Navigation or Adaptive Patterns pages, or the Components/Starter templates pages not yet summarized), fetch it directly:
+This skill was compiled from a live Figma file. If you need exact pixel-level detail beyond what's summarized here, fetch it directly with any Figma-connected tool (Figma's REST API, a Figma MCP server, or manually in the Figma app):
 
 - File key: `A8CGHj3fosazzLjxUN5CtM`
-- Use `get_design_context` or `get_metadata` with the relevant node ID from `reference/page-node-map.md`
+- Node IDs for every page are listed in `reference/page-node-map.md`
 
-See `reference/` for the full page inventory and any additional extracted detail.
+This skill's guidance is written to be usable by any AI coding/design agent (not tied to a specific tool or vendor) — it describes what to build, not how a particular agent should fetch it.
