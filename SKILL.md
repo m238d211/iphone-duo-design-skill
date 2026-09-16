@@ -1,167 +1,62 @@
 ---
 name: iphone-duo-design
-description: Design and UI guidance for "iPhone Duo," a conceptual foldable/dual-screen iPhone (NOT a real shipping Apple product — this is a speculative/community design kit styled after Apple's Human Interface Guidelines). Use this skill whenever the user asks to design, mock up, or build a UI/UX for iPhone Duo, a foldable iPhone, or any dual-display iPhone concept — including layouts, navigation patterns, safe areas, device frames, or adaptive app patterns for this device. Also use it if the user references "Duo System," device poses (Flat, Folded like a book, Propped on a surface, Standing on its edges), or configurations like Outer/Inner Portrait/Landscape, Partial Book, or Partial Tabletop.
+description: Design and implementation guidance for Apple iPhone Duo. Use for iPhone Duo layouts, fold-aware interfaces, dual-display navigation, safe or reserved regions, adaptive SwiftUI/UIKit/Flutter work, and reviews of Duo UI. Apple documentation is canonical; the included Figma Community material is supplementary only.
 ---
 
 # iPhone Duo Design Skill
 
-## What this is
+## Purpose
 
-This skill packages design specifications from a Figma community file ("iPhone Duo UI/UX") that imagines a foldable/dual-screen iPhone and documents how to design for it, in the style of Apple's Human Interface Guidelines (HIG).
+iPhone Duo is Apple’s foldable iPhone, announced on September 9, 2026. This skill helps designers and developers create adaptive experiences without confusing Apple platform facts with the supplementary Figma Community design system or repository-authored advice.
 
-**Important — read this before using anything below:** iPhone Duo is **not a real, currently shipping Apple product**. This kit is a well-produced speculative/concept design system. Every numeric value in the kit carries a provenance badge:
+Do not present this repository as Apple documentation. For platform behavior, follow the source hierarchy below and cite the source IDs used in an answer.
 
-| Badge | Meaning |
-|---|---|
-| **Official** | Stated by Apple (in the *real* iPhone/iPadOS HIG, applied to this concept) |
-| **Derived** | Computed from official numbers |
-| **Recommended** | This kit's own design value (not from Apple) |
-| **Illustrative** | Visual only, not a spec |
-| **Assumption** | Unverified guess |
+## Use this skill when
 
-When using this skill, be transparent with the user that this is a concept/fan-made design system, not real Apple guidance — especially if they plan to publish or present it as authoritative.
+- Designing, reviewing, or implementing an iPhone Duo experience.
+- Adapting a phone screen to a resizable, inner, outer, partially folded, or Split View context.
+- Working with Duo navigation, safe areas, reserved regions, hinge behavior, scenes, or cameras.
 
-## When to use this skill
+## Source hierarchy and provenance
 
-Use this skill when the user wants to:
-- Design screens, mockups, or wireframes for the iPhone Duo concept device
-- Build a UI that adapts between "outer" (closed, small) and "inner" (open, large, dual-pane) displays
-- Understand safe areas, hinge regions, or reserved regions (camera cutouts) for a foldable iPhone
-- Pick an appropriate navigation pattern (nav bar, tab bar, sidebar, split view, etc.) for outer vs. inner display
-- Reference device poses (Flat, Book-fold, Propped, Standing) when designing layouts
+1. `APPLE_OFFICIAL` — Apple Developer documentation, HIG, videos, and API references.
+2. `APPLE_DERIVED` — reproducible calculation using a recorded Apple source; never a runtime guarantee.
+3. `COMMUNITY_FIGMA` — supplementary source-file content and measurements.
+4. `REPOSITORY_RECOMMENDED` — original guidance in this repository.
+5. `ILLUSTRATIVE` — example-only visual content.
+6. `ASSUMPTION` — a stated but unverified working premise.
+7. `UNVERIFIED` — a claim or gap awaiting a specific source.
 
-## Device configurations (six states)
+Only a value with a specific Apple source ID may be `APPLE_OFFICIAL`. Never treat a Figma measurement, a pixel-to-point division, or a device model check as a runtime contract. See [source registry](reference/apple-sources.md), [device facts](reference/device-facts.md), and [tokens](reference/design-tokens.yaml).
 
-| Configuration | Description | Logical size | Resolution | Size class | Provenance |
-|---|---|---|---|---|---|
-| Outer Portrait | Device closed, held upright | 466 × 678 pt | 1398 × 2034 px | Compact | Resolution/size class: Official; logical size: Derived |
-| Outer Landscape | Device closed, sideways | 678 × 466 pt | 2034 × 1398 px | Compact | Official (vertical bar side: Assumption) |
-| Inner Portrait | Device open, upright | 669 × 951 pt | 1878 × 2670 px | Regular × Regular | Official (hinge line position: Derived) |
-| Inner Landscape | Device fully open (natural posture) | 951 × 669 pt | 2670 × 1878 px | Regular × Regular | Official |
-| Partial Book | Inner display, folded partway like a book | 951 × 669 pt | — | — | Official (logical size: Derived) |
-| Partial Tabletop | Inner display, propped on a surface | 669 × 951 pt | — | — | Official |
+## Core rules
 
-Standing the device on its edges uses the same sizes/rules as its base configuration — it doesn't need its own layout.
+- Use window geometry, horizontal and vertical size classes, safe areas, and reserved regions independently. Do not design from a device-model name, a fixed screen size, or inner-display orientation alone.
+- Outer portrait is horizontal compact / vertical regular; outer landscape is compact / compact; the inner display is regular / regular. See [device facts](reference/device-facts.md).
+- Keep foreground controls in runtime safe areas. Backgrounds may extend behind system containers. Treat each edge independently because Duo geometry can be asymmetric.
+- Prefer standard navigation, bars, sheets, menus, split views, and arrangements so the system can adapt them around bars, cameras, and folds.
+- A fold, rotation, resize, display switch, or Split View change must preserve domain state, navigation, selection, and useful scroll position.
+- Keep important controls out of a partially folded division region. Use region/arrangement APIs for layout, not hinge-angle events.
+- Design for Dynamic Type, VoiceOver, Reduce Motion/Transparency, contrast, keyboard/focus, RTL, and localization expansion.
 
-### Outer display
-Used when the device is closed. It's wider and shorter than a normal iPhone display, so the system moves the status bar and control bars to the **side** (vertical), not the top, to preserve vertical space for content.
-- A round camera cutout is always present in the top corner (reserved region).
-- Vertical controls (back, prominent action, toolbar groups, tab bar) stack top-to-bottom in a **94 pt wide vertical bar**.
+## Decision procedure
 
-### Inner display
-Used when open. Regular×Regular size class leaves room for sidebars and two panes (leading/trailing). In landscape, controls stay on the side (matching the outer display's convention) rather than moving to the top.
-- Hidden inner camera sits under the display; when active, content moves aside for it.
-- Leading pane = list/sidebar/primary view. Trailing pane = detail/secondary view.
+For a Duo task, determine: platform/framework; active window or scene geometry; both size classes; safe and reserved regions; navigation/container; pane roles; whether displacement or an arrangement is needed; continuity/state handling; fold avoidance; accessibility and RTL; and the official, community, and unresolved inputs. Then give implementation guidance with fallbacks.
 
-## Safe areas (Layout Guides page)
+## Choose the detailed guide
 
-A safe area is the part of the screen not covered by hardware or system UI. On iPhone Duo it's **asymmetric** — read every inset independently, never assume left equals right.
+- [New screen workflow](workflows/new-screen.md) — new UX or mockups.
+- [Adaptive-layout workflow](workflows/adaptive-layout.md) — migrate an existing screen.
+- [Design review](workflows/design-review.md) or [implementation review](workflows/implementation-review.md) — audit work.
+- [SwiftUI](platforms/swiftui.md), [UIKit](platforms/uikit.md), or [Flutter](platforms/flutter.md) — framework-specific guidance.
+- [API index](reference/api-index.md), [design rules](reference/design-rules.md), [accessibility and RTL](reference/accessibility.md), [Figma source](reference/figma-source.md), [legal and attribution](reference/legal-and-attribution.md), and [compatibility](reference/compatibility.md) — detailed references.
 
-| Region | Value | Provenance |
-|---|---|---|
-| Outer, top and bottom | 8 pt | Recommended |
-| Outer, trailing (vertical bar) | 94 pt | Recommended |
-| Inner portrait, top (status bar) | 80 pt | Recommended (kit value) |
-| Inner portrait, bottom | 24 pt | Recommended |
-| Inner landscape, trailing (vertical bar) | 94 pt | Recommended |
-| Leading inset, all states | 0 pt | Assumption |
+## Output contract
 
-Rules:
-- Let backgrounds/images run to the screen edges; keep text and controls inside the safe area.
-- In Split View multitasking, each app places controls on its own outer edge — so the *opposite* edge can carry an inset too.
-- Apple has not published an official Duo margins/safe-area template — every value above is a starting point from this kit ("Duo System"), not verified Apple guidance.
+For design work, cover as relevant: target configuration; window/size-class context; task; navigation and pane roles; reserved/fold regions; safe-area and bar strategy; continuity; accessibility; sources; community recommendations; assumptions; and implementation notes.
 
-## Reserved regions
+For implementation work, cover as relevant: framework and minimum SDK; verified APIs; runtime-geometry strategy; state and fallback behavior; accessibility; device states to verify; sources; and assumptions. This is a completeness checklist, not a requirement to pad simple answers.
 
-- **Outer camera**: always present, round cutout in the top corner of the outer display.
-- **Inner camera**: hidden until active; UI moves aside for it when it activates.
-- **Folding region**: zero width when flat; when partially open it splits the display and excludes the center (the fold itself).
+## Uncertainty and publishing
 
-## Poses
-
-Apple's guidance (per this kit) is to design for **size classes, not for each pose** — reserved regions should shape the layout, not the specific way someone is holding the device.
-
-| Pose | Behavior |
-|---|---|
-| Flat | Division region has zero width and is inactive — treat the display as one surface |
-| Folded like a book | Hinge divides the inner display into two usable regions; content spanning the fold is harder to see |
-| Propped on a surface | Top region = content viewed at a distance; bottom region = interactive controls |
-| Standing on its edges | Same size classes as other poses apply — no separate layout needed |
-
-## Navigation patterns (Navigation page)
-
-The kit documents outer-vs-inner adaptations for 8 navigation patterns. For each, the design shows an **Outer** state and an **Inner** state side by side with notes on "what changes," "why," and "build with" (framework/API hints):
-
-1. Navigation bar — outer: list view in vertical-bar layout; inner: navigation bar + system chrome above, tab bar below
-2. Tab navigation — outer: tab bar; inner: tabs promoted to a sidebar
-3. Sidebar — outer: single pane; inner: sidebar + content pane
-4. Vertical navigation — outer: stacked rows; inner: split view
-5. Toolbar — outer: single article view; inner: same, wider article pane
-6. Split navigation — outer: single pane; inner: split view
-7. Contextual actions — outer: context menu overlay; inner: context menu within split view, hinge band shown
-8. Sheets — outer: full-height sheet with dimming; inner: centered sheet within split view
-
-**When reading this skill, treat this list as an inventory of what exists in the source file, not verbatim rule text** — if you need the exact "what changes / why" wording for a specific pattern, fetch it live from the Figma file (see "Going further" below) rather than inventing it.
-
-## Adaptive app patterns (Adaptive Patterns page)
-
-The kit shows 10 worked examples of real app types adapting between outer (closed) and inner (open) states — useful as references for how a given app category should restructure:
-
-1. Feed — outer: single-column story cards; inner: two-column feed + supporting panel
-2. Master-Detail — outer: list only; inner: list pane + detail pane
-3. Messaging — outer: single conversation thread; inner: conversation list + active conversation
-4. Media (music/video player) — outer: player only; inner: player pane + context pane (up next / related)
-5. Maps — outer: map + place card; inner: place panel (search + list) + map area
-6. E-commerce — outer: single-column product grid; inner: catalog pane + product detail pane
-7. Dashboard — outer: stacked metrics + one chart; inner: metrics row + two charts side by side
-8. Settings — outer: single settings list; inner: settings sidebar + detail pane
-9. Calendar — outer: agenda list; inner: agenda pane + event detail pane (with hinge gutter)
-10. Dark Mode Check — a dark-mode rendering of a messaging app, used to sanity-check the pattern in dark mode
-
-## Do / Don't rules
-
-The kit's "Do / Don't" page gives ten paired illustrations of common mistakes. Use these as a checklist when reviewing any iPhone Duo layout:
-
-1. **Preserve task continuity** — don't restart or reset a flow when the device folds/unfolds.
-2. **Use the extra area for secondary context** — don't just stretch a single-pane layout; give the inner display's extra space a real second pane.
-3. **Respect the hinge and reserved regions** — don't place primary actions or important content on the fold line.
-4. **Keep bars where the system puts them** — don't move status/navigation bars to positions the system doesn't use for this device.
-5. **Keep control order stable across poses** — don't reorder controls just because the pose changed.
-6. **Split grids evenly at the fold** — uneven column splits across the hinge look broken.
-7. **Let scrolling content stay in place** — don't let items visually jump/displace across the fold as the user scrolls.
-8. **Handle each safe-area inset on its own** — don't mirror one edge's inset onto the opposite edge.
-9. **Keep a readable line length** — don't let text stretch edge-to-edge on the wider inner display; use a side pane or cap line length instead.
-10. **Use the system overflow menu** — don't invent a custom overflow/more-actions pattern.
-
-## Starter templates
-
-The kit ships 7 ready-to-duplicate frame sets (each with Outer and Inner states, plus optional hidden "Guides" layers for Safe Area / Hinge you can toggle on to check your work):
-
-**Blank**, **Master Detail**, **Sidebar Detail**, **Feed**, **Media + Context**, **Map + Panel**, **Dashboard**.
-
-Each starter's Inner layout already reflects the leading/trailing pane split described above — start from the closest-matching template rather than building a layout from scratch.
-
-## Component library
-
-Two component-bearing pages exist in the source file:
-
-- **Device Frames** — 15 device-frame symbols spanning Display (Outer/Inner) × Orientation (Portrait/Landscape) × Fold (Folded/Unfolded/Partial) × Presentation (Device / Screen Only / Guides), plus a validity table of which combinations are real device states.
-- **Components** — the full UI kit: status bar variants (side rail / top bar, outer / inner), a "Liquid Glass" material in 4 types, sidebar rows/columns, pane roles (Content/Detail/Supporting), split-view and arrangement-view variants (Split/Overlay × Flat/Partial fold), vertical and horizontal bars (nav bar, toolbar, tab bar), floating controls, sheets, context menus, list rows, avatars, capsule buttons, metrics, bar buttons, an SF-Symbols-style glyph set (chevron, xmark, plus, magnifyingglass, house, gearshape, etc.), and the documentation-system components used throughout the kit itself (spec badges, callouts, do/don't rule blocks, checklist items).
-
-If you're generating UI code (not just Figma frames) for iPhone Duo, treat this component list as the vocabulary to reuse: e.g. "outer display" screens use the vertical-bar status/nav pattern; "inner display" screens use pane roles (Content/Detail/Supporting) and the split/overlay arrangement views.
-
-## Known gaps — verify before treating as final
-
-This skill was compiled by an AI agent reading the source Figma file through a live connector, and one page could not be fully read due to a tool-call rate limit reached mid-session:
-
-- **About page**: contains the kit's actual legal/licensing notice, an "Assumptions to verify" list (4 items), and an explicit "Apple Resources and Publishing Review" section (labeled "Referenced, not copied" / "Not included" / "Personal interpretation") — this is exactly the section that governs how this kit relates to real Apple IP. **Read this page yourself in Figma before publishing or redistributing anything derived from this kit**, and update `reference/page-node-map.md` / this file's license section accordingly. Node ID: `3:637`.
-- Navigation and Adaptive Patterns pages' exact "what changes / why / build with" text was structurally identified (which patterns exist, what states they show) but not transcribed verbatim — see `reference/page-node-map.md` for how to pull the exact wording if needed.
-
-## Going further / re-fetching live data
-
-This skill was compiled from a live Figma file. If you need exact pixel-level detail beyond what's summarized here, fetch it directly with any Figma-connected tool (Figma's REST API, a Figma MCP server, or manually in the Figma app):
-
-- File key: `A8CGHj3fosazzLjxUN5CtM`
-- Node IDs for every page are listed in `reference/page-node-map.md`
-
-This skill's guidance is written to be usable by any AI coding/design agent (not tied to a specific tool or vendor) — it describes what to build, not how a particular agent should fetch it.
+If Apple does not publish a fact or API, mark it `UNVERIFIED` rather than filling the gap. The Figma About page confirms that it is unofficial and supplies no reusable asset license; detailed node/text extraction remains incomplete. Do not claim rights to those assets. Re-verify Apple, Flutter, and Figma sources before a release; the current repository verification date is 2026-09-16.

@@ -22,9 +22,18 @@ SOFTWARE.
 
 ---
 
-Note: this license covers the text/markdown guidance authored in this
-repository. It does not grant rights to Apple's trademarks, Human Interface
-Guidelines text, or any Apple intellectual property, and it does not grant
-rights beyond what the source Figma community file ("iPhone Duo UI/UX")
-itself permits — see the "Known gap" section in README.md before
-redistributing.
+Additional scope and third-party notice
+(Not part of the MIT License text)
+
+The MIT License above applies to repository-authored code and documentation
+only to the extent owned or licensable by the repository copyright holder.
+It does not grant rights in Apple trademarks, Apple documentation, Apple
+design-resource files, SF fonts, SF Symbols, Apple product artwork, or other
+Apple intellectual property. iPhone, iOS, and Apple are trademarks of Apple
+Inc.
+
+This repository is unofficial and is not affiliated with, reviewed by,
+sponsored by, approved by, or endorsed by Apple. Figma Community-derived
+material and other third-party assets remain subject to the rights that apply
+to their source material. Referencing them here does not relicense them under
+MIT. See NOTICE.md and reference/legal-and-attribution.md for context.

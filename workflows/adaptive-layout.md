@@ -1,0 +1,3 @@
+# Adaptive-layout migration workflow
+
+Inventory fixed widths, orientation branches, `UIScreen.main` usage, custom bars, and state owned by presentation views. Replace geometry assumptions with constraints, traits, safe areas, margins, and the active scene. Prefer a single pane under constrained geometry and add a detail/supporting pane only when the task benefits. Move bars through standard containers, use runtime reserved-region/arrangement APIs where available, and retain a conventional fallback. Validate closed, open, partial fold, rotation, Split View, keyboard/PiP pressure, RTL, and large-text states without resetting application state.

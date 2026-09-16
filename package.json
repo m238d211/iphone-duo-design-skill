@@ -1,9 +1,21 @@
 {
   "name": "iphone-duo-design-skill",
   "version": "1.0.0",
-  "description": "A Claude Skill (plain Markdown, usable by any AI coding/design agent) packaging design guidance for \"iPhone Duo,\" a conceptual foldable/dual-screen iPhone: device configurations, safe areas, navigation patterns, adaptive app patterns, do/don't rules, starter templates, and a component library.",
+  "description": "A source-aware agent skill for designing and implementing adaptive interfaces for Apple iPhone Duo, with Apple documentation as canonical authority and Figma Community material as supplementary reference.",
   "license": "MIT",
   "author": "Mahmoud",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m238d211/iphone-duo-design-skill.git"
+  },
+  "homepage": "https://github.com/m238d211/iphone-duo-design-skill#readme",
+  "bugs": {
+    "url": "https://github.com/m238d211/iphone-duo-design-skill/issues"
+  },
+  "scripts": {
+    "validate": "node scripts/validate-skill.js",
+    "validate:sources": "node scripts/validate-sources.js"
+  },
   "keywords": [
     "claude",
     "claude-code",
@@ -16,13 +28,21 @@
     "iphone",
     "foldable",
     "hig",
-    "human-interface-guidelines"
+    "human-interface-guidelines",
+    "swiftui",
+    "uikit",
+    "flutter",
+    "adaptive-layout"
   ],
   "files": [
     "bin",
     "reference",
+    "platforms",
+    "workflows",
+    "scripts",
     "SKILL.md",
     "README.md",
+    "NOTICE.md",
     "LICENSE"
   ],
   "bin": {

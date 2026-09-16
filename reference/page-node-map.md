@@ -1,5 +1,7 @@
 # iPhone Duo UI/UX — Figma page map
 
+**Provenance: `COMMUNITY_FIGMA`.** This is a supplementary source index, not Apple platform documentation. Last reviewed: 2026-09-16. See [figma-source.md](figma-source.md) for extraction and licensing limits.
+
 Source file: https://www.figma.com/design/A8CGHj3fosazzLjxUN5CtM/iPhone-Duo-UI-UX--Community-
 
 File key: `A8CGHj3fosazzLjxUN5CtM`
@@ -20,7 +22,7 @@ by hand from links shared by the file's owner, opened one at a time.
 | Starter Templates | 3:634 | Fully identified — 7 templates (Blank, Master Detail, Sidebar Detail, Feed, Media + Context, Map + Panel, Dashboard), summarized in SKILL.md |
 | Do / Don't | 3:635 | 10 rule titles extracted (see SKILL.md); the actual "why" copy under each Do/Don't pair not transcribed verbatim |
 | Components | 3:636 | Full component inventory extracted — see SKILL.md "Component library" section |
-| About | 3:637 | **NOT fully read — hit Figma MCP rate limit.** Contains legal/licensing notice, "Assumptions to verify" list, and "Apple Resources and Publishing Review" (Referenced not copied / Not included / Personal interpretation). Read this before republishing. |
+| About | 3:637 | **Complete** — source-supplied text reviewed on 2026-09-16; legal/attribution boundary, assumptions, and publishing review are summarized in `figma-source.md` and `legal-and-attribution.md`. |
 
 Node IDs seen but not opened as separate pages (likely internal component/section groups within
 Components or Device Frames, based on their numeric range): `4:20100`, `4:20296`, `4:21268`,
@@ -35,6 +37,5 @@ get_metadata(fileKey="A8CGHj3fosazzLjxUN5CtM", nodeId="<node id>")       # struc
 get_design_context(fileKey="A8CGHj3fosazzLjxUN5CtM", nodeId="<node id>") # full text + screenshot
 ```
 
-Priority for a follow-up pass: **About page (3:637)** first (licensing), then verbatim text for
-Navigation (3:632) and Adaptive Patterns (3:633) if you need the exact "why" copy rather than
-the pattern inventory already in SKILL.md.
+Priority for a follow-up pass: verbatim text for Navigation (3:632), Adaptive Patterns (3:633),
+Layout Guides, and Do / Don’t if exact explanatory copy is needed rather than the current inventory.

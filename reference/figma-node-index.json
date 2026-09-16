@@ -1,0 +1,26 @@
+{
+  "source": {
+    "fileKey": "A8CGHj3fosazzLjxUN5CtM",
+    "provenance": "COMMUNITY_FIGMA",
+    "lastReviewed": "2026-09-16",
+    "aboutPage": "3:637",
+    "aboutExtractionStatus": "complete"
+  },
+  "layoutGuides": {
+    "safeAreas": null,
+    "hinge": null,
+    "reservedRegions": null,
+    "columns": null
+  },
+  "navigation": {
+    "tabNavigation": null,
+    "sidebar": null,
+    "sheets": null
+  },
+  "patterns": {
+    "messaging": null,
+    "media": null,
+    "dashboard": null
+  },
+  "unresolved": "Granular node IDs were not recorded by the prior extraction. See page-node-map.md for verified page IDs; do not invent child IDs."
+}

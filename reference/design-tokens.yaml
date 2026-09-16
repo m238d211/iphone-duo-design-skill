@@ -1,0 +1,81 @@
+schemaVersion: 1
+lastVerified: 2026-09-16
+provenanceValues:
+  - APPLE_OFFICIAL
+  - APPLE_DERIVED
+  - COMMUNITY_FIGMA
+  - REPOSITORY_RECOMMENDED
+  - ILLUSTRATIVE
+  - ASSUMPTION
+  - UNVERIFIED
+tokens:
+  outerTrailingReference:
+    value: 94
+    unit: pt
+    provenance: COMMUNITY_FIGMA
+    sourceId: FIGMA_DUO_ABOUT
+    sourceSection: Safe Areas
+    verifiedDate: 2026-09-16
+    derivation: null
+    runtimeConstant: false
+    notes: Design reference only; query runtime safe-area geometry in app code.
+  innerPortraitTopReference:
+    value: 80
+    unit: pt
+    provenance: COMMUNITY_FIGMA
+    sourceId: FIGMA_DUO_LAYOUT_GUIDES
+    sourceSection: Safe Areas
+    verifiedDate: 2026-09-16
+    derivation: null
+    runtimeConstant: false
+    notes: Design reference only; not an Apple operating-system inset.
+  innerPortraitBottomReference:
+    value: 24
+    unit: pt
+    provenance: COMMUNITY_FIGMA
+    sourceId: FIGMA_DUO_LAYOUT_GUIDES
+    sourceSection: Safe Areas
+    verifiedDate: 2026-09-16
+    derivation: null
+    runtimeConstant: false
+    notes: Design reference only; not an Apple operating-system inset.
+  foldingBandReference:
+    value: 27
+    unit: pt
+    provenance: COMMUNITY_FIGMA
+    sourceId: FIGMA_DUO_ABOUT
+    sourceSection: About page assumptions to verify
+    verifiedDate: 2026-09-16
+    derivation: Measured from Apple HIG imagery by the Figma author.
+    runtimeConstant: false
+    notes: Design reference only; query an active division reserved region at runtime.
+  innerLandscapeLogicalReference:
+    value: [951, 669]
+    unit: pt
+    provenance: COMMUNITY_FIGMA
+    sourceId: FIGMA_DUO_ABOUT
+    sourceSection: Assumptions to verify
+    verifiedDate: 2026-09-16
+    derivation: 2853 x 2007 App Store Connect screenshot pixels divided by an assumed 3x scale.
+    runtimeConstant: false
+    notes: Screenshot pixels differ from Apple-published inner panel pixels; not a runtime logical bound.
+  innerDisplayResolution:
+    value: [1878, 2670]
+    unit: px
+    provenance: APPLE_OFFICIAL
+    sourceId: APPLE_DUO_SPECS
+    sourceSection: Displays
+    verifiedDate: 2026-09-16
+    derivation: null
+    runtimeConstant: false
+    notes: Physical pixel resolution; not a logical window bound.
+  outerDisplayResolution:
+    value: [1398, 2034]
+    unit: px
+    provenance: APPLE_OFFICIAL
+    sourceId: APPLE_DUO_SPECS
+    sourceSection: Displays
+    verifiedDate: 2026-09-16
+    derivation: null
+    runtimeConstant: false
+    notes: Physical pixel resolution; not a logical window bound.
