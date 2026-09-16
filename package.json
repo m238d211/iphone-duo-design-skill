@@ -1,0 +1,34 @@
+{
+  "name": "iphone-duo-design-skill",
+  "version": "1.0.0",
+  "description": "A Claude Skill (plain Markdown, usable by any AI coding/design agent) packaging design guidance for \"iPhone Duo,\" a conceptual foldable/dual-screen iPhone: device configurations, safe areas, navigation patterns, adaptive app patterns, do/don't rules, starter templates, and a component library.",
+  "license": "MIT",
+  "author": "Mahmoud",
+  "keywords": [
+    "claude",
+    "claude-code",
+    "claude-skill",
+    "agent-skill",
+    "design",
+    "ui",
+    "ux",
+    "figma",
+    "iphone",
+    "foldable",
+    "hig",
+    "human-interface-guidelines"
+  ],
+  "files": [
+    "bin",
+    "reference",
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "bin": {
+    "iphone-duo-design-skill": "bin/install.js"
+  },
+  "engines": {
+    "node": ">=16.7.0"
+  }
+}
